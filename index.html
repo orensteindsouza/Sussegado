@@ -123,10 +123,12 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
   margin-bottom: 30px;
 }
 @media (max-width: 760px) {
-  .subtitle { font-size: 22px; }
-  /* Spanish runs longer than English here, so it needs a smaller size
-     to keep the same clean two-line break on narrow screens. */
-  .subtitle[data-lang-content="es"] { font-size: 17px; }
+  /* Both languages share one size (matched to Spanish, since it runs
+     longer) so the subtitle block is the same height either way - a
+     mismatch here was why the logo unit visibly shifted position when
+     toggling languages: the hero content is vertically centered, so a
+     taller/shorter subtitle changed where that centered block sat. */
+  .subtitle { font-size: 17px; }
 }
 .scroll-cue {
   position: absolute;
@@ -233,7 +235,8 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
 /* ---------- MENU ---------- */
 .menu { max-width: 1100px; margin: 0 auto; padding: 0 24px 40px 24px; text-align: center; }
 .menu-head { text-align: center; margin-bottom: 30px; }
-.menu-subtitle { font-style: italic; opacity: 0.75; font-size: 16px; margin: 10px 0 0 0; }
+.menu-subtitle { font-style: italic; opacity: 0.75; font-size: 18px; margin: 10px 0 0 0; }
+.menu-hygiene { font-size: 13px; opacity: 0.55; margin: 10px 0 0 0; }
 
 .menu-list { max-width: 640px; margin: 0 auto; }
 
@@ -241,6 +244,7 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
 .dish:last-of-type { border-bottom: none; }
 .dish h3 { font-size: 26px; font-weight: 700; margin: 0 0 12px 0; }
 .dish .desc { font-style: italic; font-size: 18px; line-height: 1.6; color: var(--ink); opacity: 0.85; margin: 0; }
+.dish .price { font-style: normal; font-weight: 600; font-size: 16px; color: var(--accent); margin: 10px 0 0 0; }
 
 .menu-note { text-align: center; font-style: italic; font-size: 20px; opacity: 0.7; margin-top: 40px; }
 
@@ -251,10 +255,12 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
 
 @media (min-width: 761px) {
   .menu-head { margin-bottom: 44px; }
-  .menu-subtitle { font-size: 19px; margin-top: 14px; }
+  .menu-subtitle { font-size: 22px; margin-top: 14px; }
+  .menu-hygiene { font-size: 14px; }
   .menu-list { max-width: 760px; }
   .dish h3 { font-size: 33px; }
   .dish .desc { font-size: 21px; line-height: 1.65; }
+  .dish .price { font-size: 18px; margin-top: 12px; }
 }
 
 /* ---------- BOTTOM MOBILE NAV ---------- */
@@ -377,8 +383,8 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
     <div class="frame">
       <img class="frame-img" src="images/04-bombay-2.jpg" alt="">
       <div class="divider"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
-      <p class="caption" data-lang-content="en">Mumbai carries a different inheritance entirely: the hustle of a city where a hundred communities have always cooked side by side, trading flavours as fast as everything else moves - a city that never sits still, and never really stops eating.</p>
-      <p class="caption" data-lang-content="es">Mumbai lleva una herencia completamente distinta: el ajetreo de una ciudad donde cien comunidades siempre han cocinado codo con codo, intercambiando sabores tan r&aacute;pido como todo lo dem&aacute;s se mueve - una ciudad que nunca se queda quieta, y que nunca deja de comer.</p>
+      <p class="caption" data-lang-content="en">Mumbai carries a different inheritance: the hustle of a city where diverse communities have always co-existed, trading flavours as fast as everything else moves - a city that never sits still.</p>
+      <p class="caption" data-lang-content="es">Mumbai lleva una herencia distinta: el ajetreo de una ciudad donde diversas comunidades siempre han convivido, intercambiando sabores tan r&aacute;pido como todo lo dem&aacute;s se mueve - una ciudad que nunca se queda quieta.</p>
     </div>
 
     <div class="frame">
@@ -397,8 +403,8 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
       <p class="pron" data-lang-content="en">(soo-seh-GAH-doo)</p>
       <p class="pron" data-lang-content="es">(pronunciaci&oacute;n: su-se-GA-do)</p>
       <div class="divider"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
-      <p class="caption" data-lang-content="en">It's a word Goan families still use - for a certain kind of afternoon, a certain kind of meal. It means unhurried. Settled. Content, in a quiet way that doesn't need to prove anything.</p>
-      <p class="caption" data-lang-content="es">Es una palabra que las familias goanas todav&iacute;a usan - para cierto tipo de tarde, cierto tipo de comida. Significa sin prisa. Tranquilo. Contento de una forma silenciosa que no necesita demostrar nada.</p>
+      <p class="caption" data-lang-content="en">It's a word Goan families still use - for a certain kind of afternoon, a certain kind of meal. It means Unhurried, Settled, Content and Happy.</p>
+      <p class="caption" data-lang-content="es">Es una palabra que las familias goanas todav&iacute;a usan - para cierto tipo de tarde, cierto tipo de comida. Significa Sin Prisa, Tranquilo, Contento y Feliz.</p>
       <div class="meaning-image">
         <img src="images/sussegado-meaning.jpg" alt="">
         <p class="meaning-image-credit" data-lang-content="en">(The image above shows real Indo-Portuguese houses in Goa)</p>
@@ -417,28 +423,36 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
     </h2>
     <p class="menu-subtitle" data-lang-content="en">Cooked with love, from our kitchen to yours.</p>
     <p class="menu-subtitle" data-lang-content="es">Cocinado con cari&ntilde;o, de nuestra cocina a la tuya.</p>
+    <p class="menu-hygiene" data-lang-content="en">(We use separate pans for cooking chicken, beef, and vegetarian dishes.)</p>
+    <p class="menu-hygiene" data-lang-content="es">(Utilizamos sartenes distintas para cocinar platos de pollo, ternera y vegetarianos.)</p>
   </div>
 
   <div class="menu-list">
     <div class="dish">
       <h3 data-lang-content="en">Croquetas - Chicken or Beef</h3>
       <h3 data-lang-content="es">Croquetas - Pollo o Ternera</h3>
-      <p class="desc" data-lang-content="en">In Spain, croquetas are traditionally made with a creamy bechamel base. Ours take a different path: slow-cooked, richly spiced ground meat, rolled by hand and fried until it shatters - a Goan take on a shared favourite.</p>
-      <p class="desc" data-lang-content="es">En Espa&ntilde;a, las croquetas se hacen tradicionalmente con una base cremosa de bechamel. Las nuestras siguen un camino distinto: carne picada cocinada a fuego lento y bien especiada, enrollada a mano y frita hasta quedar crujiente - una versi&oacute;n goana de un cl&aacute;sico compartido.</p>
+      <p class="desc" data-lang-content="en">In Spain, croquetas are traditionally made with a creamy bechamel base. Ours take a different path: slow-cooked, richly spiced ground meat, rolled by hand and fried - a Goan take on a shared favourite.</p>
+      <p class="desc" data-lang-content="es">En Espa&ntilde;a, las croquetas se hacen tradicionalmente con una base cremosa de bechamel. Las nuestras siguen un camino distinto: carne picada cocinada a fuego lento y bien especiada, enrollada a mano y frita - una versi&oacute;n goana de un cl&aacute;sico compartido.</p>
+      <p class="price" data-lang-content="en">&euro;2 per unit | &euro;10 for 6 units</p>
+      <p class="price" data-lang-content="es">&euro;2 por unidad | &euro;10 por 6 unidades</p>
     </div>
 
     <div class="dish">
       <h3 data-lang-content="en">Potato Chops - Chicken or Beef</h3>
       <h3 data-lang-content="es">Potato Chops - Pollo o Ternera</h3>
-      <p class="desc" data-lang-content="en">A golden potato shell, hand-shaped and crisped, holding slow-cooked, seasoned meat inside. A Bombay classic, made properly.</p>
-      <p class="desc" data-lang-content="es">Una coraza dorada de patata, moldeada a mano y crujiente, con carne cocinada a fuego lento y bien sazonada por dentro. Un cl&aacute;sico de Bombay, hecho como se debe.</p>
+      <p class="desc" data-lang-content="en">A golden potato shell, hand-shaped and crisped, holding slow-cooked, seasoned meat inside. A classic from Goa and Mumbai.</p>
+      <p class="desc" data-lang-content="es">Una coraza dorada de patata, moldeada a mano y crujiente, con carne cocinada a fuego lento y bien sazonada por dentro. Un cl&aacute;sico de Goa y Mumbai.</p>
+      <p class="price" data-lang-content="en">&euro;6 for 2 units</p>
+      <p class="price" data-lang-content="es">&euro;6 por 2 unidades</p>
     </div>
 
     <div class="dish">
       <h3 data-lang-content="en">Fried Rice + Chicken or Tofu in the Sauce of the Day</h3>
       <h3 data-lang-content="es">Arroz Frito + Pollo o Tofu en la Salsa del D&iacute;a</h3>
-      <p class="desc" data-lang-content="en">Chicken tossed in a bold, flavourful sauce, served over rice - a dish born from Mumbai's own mix of influences, and a firm favourite across the city.</p>
-      <p class="desc" data-lang-content="es">Pollo salteado en una salsa intensa y llena de sabor, servido con arroz - un plato nacido de la propia mezcla de influencias de Mumbai, y un gran favorito en toda la ciudad.</p>
+      <p class="desc" data-lang-content="en">Chicken tossed in a bold, flavourful sauce, served over wok fried rice - a dish born from Mumbai's own mix of influences, and a firm favourite across the city.</p>
+      <p class="desc" data-lang-content="es">Pollo salteado en una salsa intensa y llena de sabor, servido con arroz salteado al wok - un plato nacido de la propia mezcla de influencias de Mumbai, y un gran favorito en toda la ciudad.</p>
+      <p class="price" data-lang-content="en">&euro;7.5 for Tofu sauce with Veg rice | &euro;8.5 for Chicken Sauce with Egg fried rice</p>
+      <p class="price" data-lang-content="es">&euro;7.5 con salsa de tofu y arroz vegetal | &euro;8.5 con salsa de pollo y arroz frito con huevo</p>
     </div>
 
     <p class="menu-note" data-lang-content="en">More soulful dishes to follow</p>
