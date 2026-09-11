@@ -1,0 +1,41 @@
+/* Sussegado — Design Tokens (colors + type scale only)
+   Extracted from index.html for reference / brandbook use.
+   Not imported anywhere — this is a standalone reference sheet. */
+
+:root {
+  /* ---------- Colors ---------- */
+  --bg: #F6F2E9;        /* parchment background */
+  --ink: #2B211B;       /* primary body text */
+  --accent: #13464E;    /* primary CTA / teal accent / headings */
+  --teal: #1F4C4C;      /* secondary teal (pronunciation, small notes) */
+  --gold: #B8863B;      /* dividers, decorative marks */
+  --ink-deep: #29211C;  /* secondary CTA (EN/ES toggle active state) */
+
+  /* ---------- Fonts ---------- */
+  --font-display: 'Playfair Display', Georgia, serif; /* headings, wordmark, captions */
+  --font-body: 'Jost', sans-serif;                     /* UI, labels, dish names, body */
+
+  /* ---------- Type scale (mobile -> desktop) ----------
+     Values below are the actual sizes used across the site,
+     smallest to largest. Several scale fluidly with clamp(). */
+  --text-2xs: 12.5px;  /* nav links, mobile */
+  --text-xs: 13px;     /* small captions, credit lines */
+  --text-sm: 14px;     /* menu hygiene note, desktop */
+  --text-base: 16px;   /* menu subtitle, mobile */
+  --text-md: 17px;     /* hero subtitle, mobile (both languages) */
+  --text-lg: 18px;     /* dish description, mobile; menu subtitle, desktop */
+  --text-xl: 20px;     /* menu-note ("more dishes"), mobile */
+  --text-2xl: 21px;    /* dish description, desktop */
+  --text-3xl: 22px;    /* menu subtitle, desktop */
+  --text-4xl: 24px;    /* hero subtitle, desktop */
+  --text-5xl: 26px;    /* dish name, mobile */
+  --text-6xl: 30px;    /* section label ("Our Story"/"Our Menu"), mobile */
+  --text-7xl: 33px;    /* dish name, desktop */
+  --text-8xl: 42px;    /* section label, desktop */
+
+  /* Fluid sizes (clamp: min, viewport-relative, max) */
+  --text-fluid-pron: clamp(14px, 1.1vw, 17px);      /* pronunciation note */
+  --text-fluid-caption: clamp(17px, 1.4vw, 21px);   /* "meaning" section body copy */
+  --text-fluid-heading: clamp(30px, 3.2vw, 46px);   /* "What Sussegado Means" heading */
+  --text-fluid-hero: clamp(48px, 12vw, 88px);       /* "Sussegado" wordmark */
+}
