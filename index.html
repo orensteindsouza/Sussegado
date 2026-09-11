@@ -122,6 +122,12 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
   font-family: 'Playfair Display', serif;
   margin-bottom: 30px;
 }
+@media (max-width: 760px) {
+  .subtitle { font-size: 22px; }
+  /* Spanish runs longer than English here, so it needs a smaller size
+     to keep the same clean two-line break on narrow screens. */
+  .subtitle[data-lang-content="es"] { font-size: 17px; }
+}
 .scroll-cue {
   position: absolute;
   left: 50%;
@@ -330,8 +336,8 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
   </svg>
   <h1>Sussegado</h1>
   <div class="divider"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
-  <p class="subtitle" data-lang-content="en">Flavours we know by heart, a story we'd like to share.</p>
-  <p class="subtitle" data-lang-content="es">Sabores que llevamos en el coraz&oacute;n, una historia que nos gustar&iacute;a compartir.</p>
+  <p class="subtitle" data-lang-content="en">Flavours we know by heart,<br>a story we'd like to share.</p>
+  <p class="subtitle" data-lang-content="es">Sabores que llevamos en el coraz&oacute;n,<br>una historia que nos gustar&iacute;a compartir.</p>
   <a class="scroll-cue" href="#story" aria-label="Scroll to story">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 9 12 16 19 9"></polyline></svg>
   </a>
