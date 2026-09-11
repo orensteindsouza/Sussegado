@@ -47,8 +47,11 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
   padding: 12px 20px;
 }
 .nav-links { display: flex; gap: 22px; font-size: 14px; letter-spacing: 0.5px; }
-.nav-links a { color: var(--ink); text-decoration: none; opacity: 0.7; border-bottom: 1px solid transparent; padding-bottom: 2px; }
+.nav-links a { color: var(--ink); text-decoration: none; opacity: 0.7; border-bottom: 1px solid transparent; padding-bottom: 2px; transition: opacity 0.15s, border-color 0.15s, color 0.15s; }
 .nav-links a:hover { opacity: 1; border-bottom-color: var(--gold); }
+.nav-links a.current { opacity: 1; color: var(--accent); border-bottom-color: var(--accent); }
+
+.nav-right { display: flex; align-items: center; gap: 14px; }
 
 .lang-toggle {
   background: rgba(255,255,255,0.4);
@@ -60,6 +63,22 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
 }
 .lang-toggle button { border: none; background: transparent; padding: 5px 13px; border-radius: 999px; cursor: pointer; font-family: 'Jost', sans-serif; color: var(--ink); opacity: 0.55; }
 .lang-toggle button.active { background: var(--accent); color: var(--bg); opacity: 1; }
+
+.nav-order-btn { display: none; }
+@media (min-width: 761px) {
+  .nav-order-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--bg);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    transition: opacity 0.15s;
+  }
+  .nav-order-btn:hover { opacity: 0.85; }
+}
 
 @media (max-width: 560px) {
   .nav-links { gap: 14px; font-size: 12.5px; }
@@ -180,13 +199,29 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
 @media (min-width: 900px) {
   .meaning p.caption { max-width: 1040px; }
 }
-.meaning-image { width: 100%; margin-top: 56px; }
+.meaning-image { width: 100%; margin-top: 26px; }
 .meaning-image img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 3px; display: block; }
+.meaning-image-credit {
+  font-size: 13px;
+  font-style: italic;
+  opacity: 0.6;
+  margin: 10px 0 0 0;
+  text-align: center;
+}
+@media (max-width: 760px) {
+  /* full-bleed image on mobile - break out of the section's side padding */
+  .meaning-image { width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
+  .meaning-image img { border-radius: 0; }
+  .meaning-image-credit { padding: 0 24px; }
+}
+@media (min-width: 761px) {
+  .meaning-image { margin-top: 56px; }
+}
 
 /* ---------- MENU ---------- */
-.menu { max-width: 1100px; margin: 0 auto; padding: 40px 24px 40px 24px; text-align: center; }
+.menu { max-width: 1100px; margin: 0 auto; padding: 0 24px 40px 24px; text-align: center; }
 .menu-head { text-align: center; margin-bottom: 30px; }
-.menu-head h2 { font-size: 24px; font-weight: 700; margin: 0; line-height: 1.3; }
+.menu-subtitle { font-style: italic; opacity: 0.75; font-size: 16px; margin: 10px 0 0 0; }
 
 .menu-list { max-width: 640px; margin: 0 auto; }
 
@@ -203,16 +238,11 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
 }
 
 @media (min-width: 761px) {
-  .menu { padding-top: 60px; }
   .menu-head { margin-bottom: 44px; }
+  .menu-subtitle { font-size: 19px; margin-top: 14px; }
   .menu-list { max-width: 760px; }
-  .menu-head h2 { font-size: 44px; }
   .dish h3 { font-size: 33px; }
   .dish .desc { font-size: 21px; line-height: 1.65; }
-}
-
-@media (min-width: 900px) {
-  .menu-head h2 { white-space: nowrap; font-size: 42px; }
 }
 
 /* ---------- BOTTOM MOBILE NAV ---------- */
@@ -229,7 +259,8 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
   padding: 10px 12px;
   padding-bottom: max(10px, env(safe-area-inset-bottom));
 }
-.bottomnav a.tab { color: var(--ink); text-decoration: none; font-size: 12.5px; letter-spacing: 0.3px; opacity: 0.7; text-align: center; }
+.bottomnav a.tab { color: var(--ink); text-decoration: none; font-size: 12.5px; letter-spacing: 0.3px; opacity: 0.7; text-align: center; transition: opacity 0.15s, color 0.15s; }
+.bottomnav a.tab.current { opacity: 1; color: var(--accent); font-weight: 600; }
 .bottomnav a.order-tab { background: var(--accent); color: var(--bg); opacity: 1; padding: 10px 20px; border-radius: 999px; font-size: 13px; letter-spacing: 0.5px; }
 
 @media (max-width: 760px) {
@@ -265,9 +296,12 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
     <a href="#story"><span data-lang-content="en">Our Story</span><span data-lang-content="es">Nuestra Historia</span></a>
     <a href="#menu"><span data-lang-content="en">Menu</span><span data-lang-content="es">Menú</span></a>
   </div>
-  <div class="lang-toggle">
-    <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
-    <button id="btn-en" onclick="setLang('en')">EN</button>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+    <a class="nav-order-btn" href="https://wa.me/34607284717"><span data-lang-content="en">Order</span><span data-lang-content="es">Pedir</span></a>
   </div>
 </nav>
 
@@ -355,6 +389,8 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
       <p class="caption" data-lang-content="es">Es una palabra que las familias goanas todav&iacute;a usan - para cierto tipo de tarde, cierto tipo de comida. Significa sin prisa. Tranquilo. Contento de una forma silenciosa que no necesita demostrar nada.</p>
       <div class="meaning-image">
         <img src="images/sussegado-meaning.jpg" alt="">
+        <p class="meaning-image-credit" data-lang-content="en">(The image above shows real Indo-Portuguese houses in Goa)</p>
+        <p class="meaning-image-credit" data-lang-content="es">(La imagen de arriba muestra casas indo-portuguesas reales en Goa)</p>
       </div>
     </div>
   </section>
@@ -363,8 +399,12 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
 <!-- MENU -->
 <section class="menu" id="menu">
   <div class="menu-head">
-    <h2 data-lang-content="en">Cooked with love, from our kitchen to yours.</h2>
-    <h2 data-lang-content="es">Cocinado con cari&ntilde;o, de nuestra cocina a la tuya.</h2>
+    <h2 class="section-label">
+      <span data-lang-content="en">Our Menu</span>
+      <span data-lang-content="es">Nuestro Men&uacute;</span>
+    </h2>
+    <p class="menu-subtitle" data-lang-content="en">Cooked with love, from our kitchen to yours.</p>
+    <p class="menu-subtitle" data-lang-content="es">Cocinado con cari&ntilde;o, de nuestra cocina a la tuya.</p>
   </div>
 
   <div class="menu-list">
@@ -465,6 +505,38 @@ function setLang(lang) {
       scrollToTarget(target);
     });
   });
+})();
+
+// Highlight the nav item for whichever section is currently in view.
+(function () {
+  var sectionIds = ['intro', 'story', 'menu'];
+  var sections = sectionIds
+    .map(function (id) { return document.getElementById(id); })
+    .filter(Boolean);
+  var navAnchors = Array.prototype.slice.call(document.querySelectorAll('a[href^="#"]'))
+    .filter(function (a) { return sectionIds.indexOf(a.getAttribute('href').slice(1)) !== -1; });
+
+  function setCurrent(id) {
+    navAnchors.forEach(function (a) {
+      a.classList.toggle('current', a.getAttribute('href') === '#' + id);
+    });
+  }
+
+  if (!sections.length) return;
+
+  if ('IntersectionObserver' in window) {
+    // Shrink the observed area to a thin band just below the sticky nav,
+    // so whichever section occupies that band is the one marked current.
+    var observer = new IntersectionObserver(function (entries) {
+      var visible = entries.filter(function (e) { return e.isIntersecting; });
+      if (!visible.length) return;
+      visible.sort(function (a, b) { return b.intersectionRatio - a.intersectionRatio; });
+      setCurrent(visible[0].target.id);
+    }, { rootMargin: '-70px 0px -75% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] });
+    sections.forEach(function (s) { observer.observe(s); });
+  } else {
+    setCurrent('intro');
+  }
 })();
 </script>
 
