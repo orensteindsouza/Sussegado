@@ -62,18 +62,23 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
   font-size: 13px;
 }
 .lang-toggle button { border: none; background: transparent; padding: 5px 13px; border-radius: 999px; cursor: pointer; font-family: 'Jost', sans-serif; color: var(--ink); opacity: 0.55; }
-.lang-toggle button.active { background: var(--accent); color: var(--bg); opacity: 1; }
+.lang-toggle button.active { background: #29211C; color: var(--bg); opacity: 1; }
 
 .nav-order-btn { display: none; }
 @media (min-width: 761px) {
   .nav-order-btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 37.5px;
+    min-width: 130px;
+    box-sizing: border-box;
     background: var(--accent);
     color: var(--bg);
     text-decoration: none;
     font-size: 13px;
     letter-spacing: 0.5px;
-    padding: 8px 18px;
+    padding: 0 24px;
     border-radius: 999px;
     transition: opacity 0.15s;
   }
@@ -104,8 +109,8 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
      touching the subtitle - top spacing is unchanged */
   .hero { padding-bottom: 130px; }
 }
-.icon { width: 130px; height: 130px; margin-bottom: 34px; }
-.hero h1 { font-size: clamp(48px, 12vw, 88px); font-weight: 700; margin: 0 0 26px 0; letter-spacing: 0.5px; }
+.icon { width: 130px; height: 130px; margin-bottom: 14px; }
+.hero h1 { font-size: clamp(48px, 12vw, 88px); font-weight: 700; margin: 0 0 14px 0; letter-spacing: 0.5px; }
 .divider { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 0 0 26px 0; width: 100%; }
 .divider .line { width: 60px; height: 2px; background: var(--gold); }
 .divider .diamond { width: 11px; height: 11px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
@@ -216,6 +221,7 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
 }
 @media (min-width: 761px) {
   .meaning-image { margin-top: 56px; }
+  .meaning-image-credit { font-size: 16px; margin-top: 14px; }
 }
 
 /* ---------- MENU ---------- */
@@ -508,13 +514,25 @@ function setLang(lang) {
 })();
 
 // Highlight the nav item for whichever section is currently in view.
+// Plain scroll-position comparison rather than IntersectionObserver:
+// #story is thousands of pixels tall (it holds the whole illustrated
+// story + meaning block), so its intersection ratio against a thin
+// activation band never crosses a useful threshold once you're in the
+// middle of it - it would only ever get marked current right at its
+// very top edge. Walking sections top-to-bottom and taking the last
+// one that's scrolled past the activation line has no such failure
+// mode regardless of how tall a section is.
 (function () {
   var sectionIds = ['intro', 'story', 'menu'];
   var sections = sectionIds
     .map(function (id) { return document.getElementById(id); })
     .filter(Boolean);
-  var navAnchors = Array.prototype.slice.call(document.querySelectorAll('a[href^="#"]'))
+  var navAnchors = Array.prototype.slice.call(document.querySelectorAll('nav a[href^="#"]'))
     .filter(function (a) { return sectionIds.indexOf(a.getAttribute('href').slice(1)) !== -1; });
+
+  if (!sections.length || !navAnchors.length) return;
+
+  var ACTIVATION_LINE = 90; // just below the 70px sticky nav
 
   function setCurrent(id) {
     navAnchors.forEach(function (a) {
@@ -522,21 +540,27 @@ function setLang(lang) {
     });
   }
 
-  if (!sections.length) return;
-
-  if ('IntersectionObserver' in window) {
-    // Shrink the observed area to a thin band just below the sticky nav,
-    // so whichever section occupies that band is the one marked current.
-    var observer = new IntersectionObserver(function (entries) {
-      var visible = entries.filter(function (e) { return e.isIntersecting; });
-      if (!visible.length) return;
-      visible.sort(function (a, b) { return b.intersectionRatio - a.intersectionRatio; });
-      setCurrent(visible[0].target.id);
-    }, { rootMargin: '-70px 0px -75% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] });
-    sections.forEach(function (s) { observer.observe(s); });
-  } else {
-    setCurrent('intro');
+  function updateCurrent() {
+    var activeId = sections[0].id;
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().top <= ACTIVATION_LINE) {
+        activeId = sections[i].id;
+      }
+    }
+    setCurrent(activeId);
   }
+
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      updateCurrent();
+      ticking = false;
+    });
+  }, { passive: true });
+
+  updateCurrent();
 })();
 </script>
 
