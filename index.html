@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-active-lang="en">
+<html lang="es" data-active-lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,7 +69,9 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
 /* ---------- HERO ---------- */
 .hero {
   position: relative;
+  min-height: 92vh;
   min-height: 92svh;
+  min-height: 92dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -169,6 +171,9 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
   max-width: 720px;
   margin: 0 auto;
 }
+@media (min-width: 900px) {
+  .meaning p.caption { max-width: 1040px; }
+}
 .meaning-image { width: 100%; margin-top: 56px; }
 .meaning-image img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 3px; display: block; }
 
@@ -255,8 +260,8 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
     <a href="#menu"><span data-lang-content="en">Menu</span><span data-lang-content="es">Menú</span></a>
   </div>
   <div class="lang-toggle">
-    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
-    <button id="btn-es" onclick="setLang('es')">ES</button>
+    <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
+    <button id="btn-en" onclick="setLang('en')">EN</button>
   </div>
 </nav>
 
