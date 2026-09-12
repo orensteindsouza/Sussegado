@@ -234,9 +234,11 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
 
 /* ---------- MENU ---------- */
 .menu { max-width: 1100px; margin: 0 auto; padding: 0 24px 40px 24px; text-align: center; }
-.menu-head { text-align: center; margin-bottom: 30px; }
+.menu-head { text-align: center; margin-bottom: 18px; }
 .menu-subtitle { font-style: italic; opacity: 0.75; font-size: 18px; margin: 10px 0 0 0; }
-.menu-hygiene { font-size: 13px; opacity: 0.55; margin: 10px 0 0 0; }
+.menu-subtitle br { display: none; }
+.menu-hygiene { font-size: 13px; opacity: 0.85; color: var(--accent); margin: 10px 0 0 0; }
+.menu-delivery { margin-bottom: 24px; }
 
 .menu-list { max-width: 640px; margin: 0 auto; }
 
@@ -247,6 +249,9 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
 .dish .price { font-style: normal; font-weight: 600; font-size: 16px; color: var(--accent); margin: 10px 0 0 0; }
 
 .menu-note { text-align: center; font-style: italic; font-size: 20px; opacity: 0.7; margin-top: 40px; }
+@media (max-width: 760px) {
+  .menu-subtitle br { display: inline; }
+}
 
 .menu-wa-button { display: none; }
 @media (min-width: 761px) {
@@ -254,9 +259,10 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
 }
 
 @media (min-width: 761px) {
-  .menu-head { margin-bottom: 44px; }
-  .menu-subtitle { font-size: 22px; margin-top: 14px; }
-  .menu-hygiene { font-size: 14px; }
+  .menu-head { margin-bottom: 24px; }
+  .menu-subtitle { font-size: 23px; margin-top: 14px; }
+  .menu-hygiene { font-size: 15px; }
+  .menu-note { font-size: 22px; }
   .menu-list { max-width: 760px; }
   .dish h3 { font-size: 33px; }
   .dish .desc { font-size: 21px; line-height: 1.65; }
@@ -422,7 +428,7 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
       <span data-lang-content="es">Nuestro Men&uacute;</span>
     </h2>
     <p class="menu-subtitle" data-lang-content="en">Cooked with love, from our kitchen to yours.</p>
-    <p class="menu-subtitle" data-lang-content="es">Cocinado con cari&ntilde;o, de nuestra cocina a la tuya.</p>
+    <p class="menu-subtitle" data-lang-content="es">Cocinado con cari&ntilde;o,<br>de nuestra cocina a la tuya.</p>
     <p class="menu-hygiene" data-lang-content="en">(We use separate pans for cooking chicken, beef, and vegetarian dishes.)</p>
     <p class="menu-hygiene" data-lang-content="es">(Utilizamos sartenes distintas para cocinar platos de pollo, ternera y vegetarianos.)</p>
     <p class="menu-hygiene" data-lang-content="en">(Pre-orders only)</p>
@@ -460,8 +466,8 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
     <p class="menu-note" data-lang-content="en">More soulful dishes to follow</p>
     <p class="menu-note" data-lang-content="es">M&aacute;s platos con alma, muy pronto</p>
 
-    <p class="menu-hygiene" data-lang-content="en">Home delivery, or delivery to your nearest metro station - whichever is more convenient for you.</p>
-    <p class="menu-hygiene" data-lang-content="es">Entrega a domicilio, o en tu estaci&oacute;n de metro m&aacute;s cercana - lo que te resulte m&aacute;s c&oacute;modo.</p>
+    <p class="menu-hygiene menu-delivery" data-lang-content="en">Home delivery, or delivery to your nearest metro station - whichever is more convenient for you.</p>
+    <p class="menu-hygiene menu-delivery" data-lang-content="es">Entrega a domicilio, o en tu estaci&oacute;n de metro m&aacute;s cercana - lo que te resulte m&aacute;s c&oacute;modo.</p>
 
     <a class="wa-button menu-wa-button" href="https://wa.me/34607284717">
       <span data-lang-content="en">Order on WhatsApp</span>
