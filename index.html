@@ -235,7 +235,8 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
 /* ---------- MENU ---------- */
 .menu { max-width: 1100px; margin: 0 auto; padding: 0 24px 40px 24px; text-align: center; }
 .menu-head { text-align: center; margin-bottom: 18px; }
-.menu-subtitle { font-style: italic; opacity: 0.75; font-size: 18px; margin: 10px 0 0 0; }
+.menu-head .section-label { padding-bottom: 6px; }
+.menu-subtitle { font-style: italic; opacity: 0.75; font-size: 18px; margin: 4px 0 20px 0; }
 .menu-subtitle br { display: none; }
 .menu-hygiene { font-size: 13px; opacity: 0.85; color: var(--accent); margin: 10px 0 0 0; }
 .menu-delivery { margin-bottom: 24px; }
@@ -260,7 +261,8 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
 
 @media (min-width: 761px) {
   .menu-head { margin-bottom: 24px; }
-  .menu-subtitle { font-size: 23px; margin-top: 14px; }
+  .menu-head .section-label { padding-bottom: 8px; }
+  .menu-subtitle { font-size: 23px; margin: 8px 0 26px 0; }
   .menu-hygiene { font-size: 15px; }
   .menu-note { font-size: 22px; }
   .menu-list { max-width: 760px; }
@@ -466,8 +468,8 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
     <p class="menu-note" data-lang-content="en">More soulful dishes to follow</p>
     <p class="menu-note" data-lang-content="es">M&aacute;s platos con alma, muy pronto</p>
 
-    <p class="menu-hygiene menu-delivery" data-lang-content="en">Home delivery, or delivery to your nearest metro station - whichever is more convenient for you.</p>
-    <p class="menu-hygiene menu-delivery" data-lang-content="es">Entrega a domicilio, o en tu estaci&oacute;n de metro m&aacute;s cercana - lo que te resulte m&aacute;s c&oacute;modo.</p>
+    <p class="menu-hygiene menu-delivery" data-lang-content="en">Depending on what's feasible for us, we'll either deliver to your home or arrange to meet at your nearest metro station.</p>
+    <p class="menu-hygiene menu-delivery" data-lang-content="es">Seg&uacute;n lo que nos resulte posible, entregamos a domicilio o quedamos en tu estaci&oacute;n de metro m&aacute;s cercana.</p>
 
     <a class="wa-button menu-wa-button" href="https://wa.me/34607284717">
       <span data-lang-content="en">Order on WhatsApp</span>
