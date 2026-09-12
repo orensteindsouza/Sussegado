@@ -242,9 +242,8 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
 .menu-delivery { margin-bottom: 24px; }
 
 .menu-list { max-width: 640px; margin: 0 auto; }
-.menu-list > .divider { margin-top: 30px; }
+.menu-list > .dish:last-of-type + .divider { margin-top: 30px; }
 .dish { padding: 30px 0; border-bottom: 1px solid rgba(43,33,27,0.15); text-align: center; }
-.dish:first-of-type { border-top: 1px solid rgba(43,33,27,0.15); }
 .dish:last-of-type { border-bottom: none; }
 .dish h3 { font-size: 26px; font-weight: 700; margin: 0 0 12px 0; }
 .dish .desc { font-style: italic; font-size: 18px; line-height: 1.6; color: var(--ink); opacity: 0.85; margin: 0; }
@@ -430,7 +429,7 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
       <span data-lang-content="en">Our Menu</span>
       <span data-lang-content="es">Nuestro Men&uacute;</span>
     </h2>
-    <p class="menu-subtitle" data-lang-content="en">Cooked with love, from our kitchen to yours.</p>
+    <p class="menu-subtitle" data-lang-content="en">Cooked with love, from our kitchen<br>to yours.</p>
     <p class="menu-subtitle" data-lang-content="es">Cocinado con cari&ntilde;o, de nuestra cocina<br>a la tuya.</p>
     <p class="menu-hygiene" data-lang-content="en">(We use separate pans for cooking chicken, beef, and vegetarian dishes.)</p>
     <p class="menu-hygiene" data-lang-content="es">(Utilizamos sartenes distintas para cocinar platos de pollo, ternera y vegetarianos.)</p>
@@ -439,6 +438,7 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
   </div>
 
   <div class="menu-list">
+    <div class="divider"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
     <div class="dish">
       <h3 data-lang-content="en">Croquetas - Chicken or Beef</h3>
       <h3 data-lang-content="es">Croquetas - Pollo o Ternera</h3>
