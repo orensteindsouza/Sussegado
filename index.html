@@ -242,8 +242,10 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
 .menu-delivery { margin-bottom: 24px; }
 
 .menu-list { max-width: 640px; margin: 0 auto; }
+.menu-list > .divider { margin-top: 30px; }
 .dish { padding: 30px 0; border-bottom: 1px solid rgba(43,33,27,0.15); text-align: center; }
 .dish:first-of-type { border-top: 1px solid rgba(43,33,27,0.15); }
+.dish:last-of-type { border-bottom: none; }
 .dish h3 { font-size: 26px; font-weight: 700; margin: 0 0 12px 0; }
 .dish .desc { font-style: italic; font-size: 18px; line-height: 1.6; color: var(--ink); opacity: 0.85; margin: 0; }
 .dish .price { font-style: normal; font-weight: 600; font-size: 16px; color: var(--accent); margin: 10px 0 0 0; }
@@ -429,7 +431,7 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
       <span data-lang-content="es">Nuestro Men&uacute;</span>
     </h2>
     <p class="menu-subtitle" data-lang-content="en">Cooked with love, from our kitchen to yours.</p>
-    <p class="menu-subtitle" data-lang-content="es">Cocinado con cari&ntilde;o,<br>de nuestra cocina a la tuya.</p>
+    <p class="menu-subtitle" data-lang-content="es">Cocinado con cari&ntilde;o, de nuestra cocina<br>a la tuya.</p>
     <p class="menu-hygiene" data-lang-content="en">(We use separate pans for cooking chicken, beef, and vegetarian dishes.)</p>
     <p class="menu-hygiene" data-lang-content="es">(Utilizamos sartenes distintas para cocinar platos de pollo, ternera y vegetarianos.)</p>
     <p class="menu-hygiene" data-lang-content="en">(Pre-orders only)</p>
@@ -463,6 +465,7 @@ html[data-active-lang="es"] span[data-lang-content="es"] { display: inline; }
       <p class="price" data-lang-content="en">&euro;7.5 for Tofu sauce with Veg rice | &euro;8.5 for Chicken Sauce with Egg fried rice</p>
       <p class="price" data-lang-content="es">&euro;7.5 con salsa de tofu y arroz vegetal | &euro;8.5 con salsa de pollo y arroz frito con huevo</p>
     </div>
+    <div class="divider"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
 
     <p class="menu-note" data-lang-content="en">More soulful dishes to follow</p>
     <p class="menu-note" data-lang-content="es">M&aacute;s platos con alma, muy pronto</p>
